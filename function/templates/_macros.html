@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', filename='css/styles.css', _external=True) }}" rel="stylesheet" type="text/css">
+    <!--<div class="pages"><span>1</span><a href="/" hidefocus="">2</a><a href="/" hidefocus="">3</a><a href="/" class="next">下一页&gt;&gt;</a></div>-->
+</head>
+<body>
+{% macro pagination_widget(pagination, endpoint) %}
+<div class="pagination">
+    {% if not pagination.has_prev %} {% endif %}
+        <a href="{% if pagination.has_prev %} {{ url_for(endpoint, page=pagination.page-1) }} {% else %} # {% endif %}">
+            &laquo;
+        </a>
+        {% for p in pagination.iter_pages() %}
+            {% if p %}
+                {% if p == pagination.page %}
+                    <!--<li class="active">-->
+                        <a href="{{ url_for(endpoint, page=p) }}" hidefocus="">{{ p }}</a>
+                    <!--</li>-->
+                {% else %}
+                    <!--<li>-->
+                        <a href="{{ url_for(endpoint, page=p) }}" hidefocus="">{{ p }}</a>
+                    <!--</li>-->
+                {% endif %}
+            {% else %}
+                <li class="disabled"><a href="#">&hellip;</a></li>
+            {% endif %}
+        {% endfor %}
+    {% if not pagination.has_next %} {% endif %}
+        <a href="{% if pagination.has_next %} {{ url_for(endpoint, page=pagination.page+1) }} {% else %} # {% endif %}">
+            &raquo;
+        </a>
+</div>
+{% endmacro %}
+</body>
+</html>

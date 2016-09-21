@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Single430博客</title>
+<link href="{{ url_for('static', filename='css/styles.css', _external=True) }}" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<header>
+  <nav id="nav">
+    <ul>
+      <li><a href="/">网站首页</a></li>
+      <li><a href="/article/create">添加文章</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="mainContent2">
+    <aside>
+      <div class="avatar">
+        <a href="/"><span>Single430</span></a>
+      </div>
+      <section class="topspaceinfo">
+        <h1>Python后端开发工程师</h1>
+        <p>广州麦仑信息科技有限公司  single430@163.com</p>
+      </section>
+      <div class="userinfo">
+        <p class="q-fans"> 粉丝：<a href="/" target="_blank">315430</a></p>
+        <p class="btns"><a href="/" target="_blank" >私信</a><a href="/" target="_blank">相册</a><a href="/" target="_blank">博客</a></p>
+      </div>
+
+      <section class="taglist">
+         <h2>全部标签</h2>
+         <ul>
+           <li><a href="/">Python</a></li>
+           <li><a href="/">C/C++</a></li>
+           <li><a href="http://python.usyiyi.cn/translate/django_182/index.html">Django</a></li>
+           <li><a href="/">Linux</a></li>
+        </ul>
+      </section>
+    </aside>
+
+    <div class="blogitem">
+        <article>
+            <a href="/delete/{{ id }}">&lt;删除文章</a>&gt;&nbsp;&nbsp;&lt;<a href="/edit/{{ id }}">编辑文章&gt;</a>
+            <div class=entry-overview>
+                <h2 class="title"><a target="_blank" >{{ title }}</a></h2>
+                <h4 class="title"><a target="_blank" >{{ author }} -- {{ create_time }}</a></h4>
+                <ul class="text">
+                  {% if body %}
+                    <div class=article_description>{{ body | safe }}</div>
+                  {% endif %}
+                </ul>
+            </div>
+        </article>
+    </div>
+ </div>
+</body>
+</html>
