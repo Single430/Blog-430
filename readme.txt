@@ -9,3 +9,4 @@
       运行需要 $ python manage.py runserver
       
       function 文件夹是 app
+ 
